@@ -49,6 +49,14 @@ NTPClient timeClient(ntpUDP, "pool.ntp.org", timeZone * 3600, 60000); //Udp& udp
 String weekDays[7]={"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 
 int flag = 0;
+
+String formatNumber(int num) {
+    if (num < 10) {
+        return "0" + String(num);
+    } 
+    return String(num);
+}
+
 void setup() {
     lcd.init(); // initialize the lcd 
     lcd.backlight();
@@ -72,7 +80,7 @@ void setup() {
     lcd.setCursor(0, 0);
     lcd.print("WiFi Connecting");
     Serial.println("WiFi Connecting"); //Print WiFi Status at Serial Monitor
-    delay(8000); //Waitng For Connecting
+    //delay(8000); //Waitng For Connecting
     lcd.clear();
 
     while (WiFi.status() != WL_CONNECTED) {
@@ -109,7 +117,7 @@ void setup() {
 
 void loop() {
     timeClient.update();
-
+    
     time_t epochTime = timeClient.getEpochTime();
     Serial.print("Epoch Time: ");
     Serial.println(epochTime);
@@ -156,39 +164,18 @@ void loop() {
 
     if (currentHour == 0) {
         currentHour = 12;
-
-        //if(currentMinute<10) {String currentMinute = "0"+String(currentMinute);
-        //if(currentSecond<10) String currentSecond = "0"+String(currentSecond);
-
-        if (currentMinute < 10) {
-            String currentMinuteStr = "00";
-            currentMinuteStr[1] = char(currentMinute + 48);
-            String currentMinute = currentMinuteStr;
-        }
-        if (currentSecond < 10) {
-            String currentSecondStr = "00";
-            currentSecondStr[1] = char(currentSecond + 48);
-            String currentSecond = currentSecondStr;
-        }
+        String formattedHour = formatNumber(currentHour);
+        String formattedMinute = formatNumber(currentMinute);
+        String formattedSecond = formatNumber(currentSecond);
+        String formattedDate = formatNumber(currentDate);
+        String formattedMonth = formatNumber(currentMonth);
+        
 
         lcd.setCursor(0, 0);
-        lcd.print("Time: " + String(currentHour) + ":" + String(currentMinute) + ":" + String(currentSecond) + " AM");
-
-        //if(currentDate<10) String currentDate = "0"+String(currentDate);
-        //if(currentMonth<10) String currentMonth = "0"+String(currentMonth);
-        if (currentDate < 10) {
-            String currentDateStr = "00";
-            currentDateStr[1] = char(currentDate + 48);
-            String currentDate = currentDateStr;
-        }
-        if (currentMonth < 10) {
-            String currentMonthStr = "00";
-            currentMonthStr[1] = char(currentMonth + 48);
-            String currentMonth = currentMonthStr;
-        }
-
+        lcd.print("Time: " + formattedHour + ":" + formattedMinute + ":" + formattedSecond + " AM");
+        
         lcd.setCursor(0, 1);
-        lcd.print("Date: " + String(currentDate) + "/" + String(currentMonth) + "/" + String(currentYear));
+        lcd.print("Date: " + formattedDate + "/" + formattedMonth + "/" + String(currentYear));
 
         lcd.setCursor(0, 2);
         lcd.print("Day: " + weekDay);
@@ -198,113 +185,49 @@ void loop() {
     else if (currentHour > 12) {
         flag = 0;
         currentHour = currentHour - 12;
-
-        //if(currentMinute<10) String currentMinute = "0"+String(currentMinute);
-        //if(currentSecond<10) String currentSecond = "0"+String(currentSecond);
-        if (currentMinute < 10) {
-            String currentMinuteStr = "00";
-            currentMinuteStr[1] = char(currentMinute + 48);
-            String currentMinute = currentMinuteStr;
-        }
-        if (currentSecond < 10) {
-            String currentSecondStr = "00";
-            currentSecondStr[1] = char(currentSecond + 48);
-            String currentSecond = currentSecondStr;
-            //Serial.println("Before  :" + String(currentSecond)+'\n' );
-        }
         
-
+        String formattedHour = formatNumber(currentHour);
+        String formattedMinute = formatNumber(currentMinute);
+        String formattedSecond = formatNumber(currentSecond);
+        String formattedDate = formatNumber(currentDate);
+        String formattedMonth = formatNumber(currentMonth);
+        
         lcd.setCursor(0, 0);
-        lcd.print("Time: " + String(currentHour) + ":" + String(currentMinute) + ":" + String(currentSecond) + " PM");
-
-        //if(currentDate<10) String currentDate = "0"+String(currentDate);
-        //if(currentMonth<10) String currentMonth = "0"+String(currentMonth);
-        if (currentDate < 10) {
-            String currentDateStr = "00";
-            currentDateStr[1] = char(currentDate + 48);
-            String currentDate = currentDateStr;
-        }
-        if (currentMonth < 10) {
-            String currentMonthStr = "00";
-            currentMonthStr[1] = char(currentMonth + 48);
-            String currentMonth = currentMonthStr;
-        }
+        lcd.print("Time: " + formattedHour + ":" + formattedMinute + ":" + formattedSecond + " AM");
 
         lcd.setCursor(0, 1);
-        lcd.print("Date: " + String(currentDate) + "/" + String(currentMonth) + "/" + String(currentYear));
+        lcd.print("Date: " + formattedDate + "/" + formattedMonth + "/" + String(currentYear));
 
         lcd.setCursor(0, 2);
         lcd.print("Day: " + weekDay);
     } 
     else {
-        //if(currentHour<10) String currentHour = "0"+String(currentHour);
-        //if(currentMinute<10) String currentMinute = "0"+String(currentMinute);
-        //if(currentSecond<10) String currentSecond = "0"+String(currentSecond);
-        if (currentHour < 10) {
-            String currentHourStr = "00";
-            currentHourStr[1] = char(currentHour + 48);
-            String currentHour = currentHourStr;
-        }
-        if (currentMinute < 10) {
-            String currentMinuteStr = "00";
-            currentMinuteStr[1] = char(currentMinute + 48);
-            String currentMinute = currentMinuteStr;
-        }
-        if (currentSecond < 10) {
-            String currentSecondStr = "00";
-            currentSecondStr[1] = char(currentSecond + 48);
-            String currentSecond = currentSecondStr;
-        }
+
+        String formattedHour = formatNumber(currentHour);
+        String formattedMinute = formatNumber(currentMinute);
+        String formattedSecond = formatNumber(currentSecond);
+        String formattedDate = formatNumber(currentDate);
+        String formattedMonth = formatNumber(currentMonth);
 
         lcd.setCursor(0, 0);
-        lcd.print("Time: " + String(currentHour) + ":" + String(currentMinute) + ":" + String(currentSecond) + " AM");
-
-        //    if(currentDate<10) String currentDate = "0"+String(currentDate);
-        //    if(currentMonth<10) String currentMonth = "0"+String(currentMonth);
-        if (currentDate < 10) {
-            String currentDateStr = "00";
-            currentDateStr[1] = char(currentDate + 48);
-            String currentDate = currentDateStr;
-        }
-        if (currentMonth < 10) {
-            String currentMonthStr = "00";
-            currentMonthStr[1] = char(currentMonth + 48);
-            String currentMonth = currentMonthStr;
-        }
+        lcd.print("Time: " + formattedHour + ":" + formattedMinute + ":" + formattedSecond + " AM");
 
         lcd.setCursor(0, 1);
-        lcd.print("Date: " + String(currentDate) + "/" + String(currentMonth) + "/" + String(currentYear));
+        lcd.print("Date: " + formattedDate + "/" + formattedMonth + "/" + String(currentYear));
 
         lcd.setCursor(0, 2);
         lcd.print("Day: " + weekDay);
 
     }
 
-    lcd.setCursor(0, 3);
     int hourLeft = 24 - timeClient.getHours() - 1;
     int minuteLeft = 60 - timeClient.getMinutes();
     int secondLeft = 60 - timeClient.getSeconds();
 
-    //  if(hourleft<10) String hourleft = "0"+String(hourleft);
-    //  if(minuteleft<10) String minuteleft = "0"+String(minuteleft);
-    //  if(secondleft<10) String secondleft = "0"+String(secondleft);
-    if (hourLeft < 10) {
-        String hourLeftStr= "00";
-        hourLeftStr[1] = char(hourLeft + 48);
-        String hourLeft = hourLeftStr;
-    }
-    if (minuteLeft < 10) {
-        String minuteLeftStr= "00";
-        minuteLeftStr[1] = char(minuteLeft + 48);
-        String minuteLeft = minuteLeftStr;
-    }
-    if (secondLeft < 10) {
-        String secondLeftStr= "00";
-        secondLeftStr[1] = char(secondLeft + 48);
-        String secondLeft = secondLeftStr;
-    }
-
-    lcd.print("Time Left: " + String(hourLeft) + ":" + String(minuteLeft) + ":" + String(secondLeft));
-
-    delay(1000);
+    String formattedHourLeft = formatNumber(hourLeft);
+    String formattedMinuteLeft = formatNumber(minuteLeft);
+    String formattedSecondLeft = formatNumber(secondLeft);
+    
+    lcd.setCursor(0, 3);
+    lcd.print("Time Left: " + formattedHourLeft + ":" + formattedMinuteLeft + ":" + formattedSecondLeft);
 }
