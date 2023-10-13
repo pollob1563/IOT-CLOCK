@@ -161,16 +161,14 @@ void loop() {
         //if(currentSecond<10) String currentSecond = "0"+String(currentSecond);
 
         if (currentMinute < 10) {
-            String currentMinuteStr;
-            currentMinuteStr[0] = '0';
+            String currentMinuteStr = "00";
             currentMinuteStr[1] = char(currentMinute + 48);
             String currentMinute = currentMinuteStr;
         }
         if (currentSecond < 10) {
-            String currentSecondStr;
-            currentSecondStr[0] = '0';
+            String currentSecondStr = "00";
             currentSecondStr[1] = char(currentSecond + 48);
-            String currentSecond = currentSecond;
+            String currentSecond = currentSecondStr;
         }
 
         lcd.setCursor(0, 0);
@@ -179,16 +177,14 @@ void loop() {
         //if(currentDate<10) String currentDate = "0"+String(currentDate);
         //if(currentMonth<10) String currentMonth = "0"+String(currentMonth);
         if (currentDate < 10) {
-            String currentDateStr;
-            currentDateStr[0] = '0';
+            String currentDateStr = "00";
             currentDateStr[1] = char(currentDate + 48);
             String currentDate = currentDateStr;
         }
         if (currentMonth < 10) {
-            String currentMonthStr;
-            currentMonthStr[0] = '0';
+            String currentMonthStr = "00";
             currentMonthStr[1] = char(currentMonth + 48);
-            String currentMonth = currentMonth;
+            String currentMonth = currentMonthStr;
         }
 
         lcd.setCursor(0, 1);
@@ -197,24 +193,26 @@ void loop() {
         lcd.setCursor(0, 2);
         lcd.print("Day: " + weekDay);
 
-    } else if (currentHour > 12) {
+    } 
+    
+    else if (currentHour > 12) {
         flag = 0;
         currentHour = currentHour - 12;
 
         //if(currentMinute<10) String currentMinute = "0"+String(currentMinute);
         //if(currentSecond<10) String currentSecond = "0"+String(currentSecond);
         if (currentMinute < 10) {
-            String currentMinuteStr;
-            currentMinuteStr[0] = '0';
+            String currentMinuteStr = "00";
             currentMinuteStr[1] = char(currentMinute + 48);
             String currentMinute = currentMinuteStr;
         }
         if (currentSecond < 10) {
-            String currentSecondStr;
-            currentSecondStr[0] = '0';
+            String currentSecondStr = "00";
             currentSecondStr[1] = char(currentSecond + 48);
-            String currentSecond = currentSecond;
+            String currentSecond = currentSecondStr;
+            //Serial.println("Before  :" + String(currentSecond)+'\n' );
         }
+        
 
         lcd.setCursor(0, 0);
         lcd.print("Time: " + String(currentHour) + ":" + String(currentMinute) + ":" + String(currentSecond) + " PM");
@@ -222,16 +220,14 @@ void loop() {
         //if(currentDate<10) String currentDate = "0"+String(currentDate);
         //if(currentMonth<10) String currentMonth = "0"+String(currentMonth);
         if (currentDate < 10) {
-            String currentDateStr;
-            currentDateStr[0] = '0';
+            String currentDateStr = "00";
             currentDateStr[1] = char(currentDate + 48);
             String currentDate = currentDateStr;
         }
         if (currentMonth < 10) {
-            String currentMonthStr;
-            currentMonthStr[0] = '0';
+            String currentMonthStr = "00";
             currentMonthStr[1] = char(currentMonth + 48);
-            String currentMonth = currentMonth;
+            String currentMonth = currentMonthStr;
         }
 
         lcd.setCursor(0, 1);
@@ -239,27 +235,25 @@ void loop() {
 
         lcd.setCursor(0, 2);
         lcd.print("Day: " + weekDay);
-    } else {
+    } 
+    else {
         //if(currentHour<10) String currentHour = "0"+String(currentHour);
         //if(currentMinute<10) String currentMinute = "0"+String(currentMinute);
         //if(currentSecond<10) String currentSecond = "0"+String(currentSecond);
         if (currentHour < 10) {
-            String currentHourStr;
-            currentHourStr[0] = '0';
+            String currentHourStr = "00";
             currentHourStr[1] = char(currentHour + 48);
-            String currentHour = currentHour;
+            String currentHour = currentHourStr;
         }
         if (currentMinute < 10) {
-            String currentMinuteStr;
-            currentMinuteStr[0] = '0';
+            String currentMinuteStr = "00";
             currentMinuteStr[1] = char(currentMinute + 48);
             String currentMinute = currentMinuteStr;
         }
         if (currentSecond < 10) {
-            String currentSecondStr;
-            currentSecondStr[0] = '0';
+            String currentSecondStr = "00";
             currentSecondStr[1] = char(currentSecond + 48);
-            String currentSecond = currentSecond;
+            String currentSecond = currentSecondStr;
         }
 
         lcd.setCursor(0, 0);
@@ -268,16 +262,14 @@ void loop() {
         //    if(currentDate<10) String currentDate = "0"+String(currentDate);
         //    if(currentMonth<10) String currentMonth = "0"+String(currentMonth);
         if (currentDate < 10) {
-            String currentDateStr;
-            currentDateStr[0] = '0';
+            String currentDateStr = "00";
             currentDateStr[1] = char(currentDate + 48);
             String currentDate = currentDateStr;
         }
         if (currentMonth < 10) {
-            String currentMonthStr;
-            currentMonthStr[0] = '0';
+            String currentMonthStr = "00";
             currentMonthStr[1] = char(currentMonth + 48);
-            String currentMonth = currentMonth;
+            String currentMonth = currentMonthStr;
         }
 
         lcd.setCursor(0, 1);
@@ -297,22 +289,19 @@ void loop() {
     //  if(minuteleft<10) String minuteleft = "0"+String(minuteleft);
     //  if(secondleft<10) String secondleft = "0"+String(secondleft);
     if (hourLeft < 10) {
-        String hourLeftStr;
-        hourLeftStr[0] = '0';
+        String hourLeftStr= "00";
         hourLeftStr[1] = char(hourLeft + 48);
-        String hourLeft = hourLeft;
+        String hourLeft = hourLeftStr;
     }
     if (minuteLeft < 10) {
-        String minuteLeftStr;
-        minuteLeftStr[0] = '0';
+        String minuteLeftStr= "00";
         minuteLeftStr[1] = char(minuteLeft + 48);
-        String minuteLeft = minuteLeft;
+        String minuteLeft = minuteLeftStr;
     }
     if (secondLeft < 10) {
-        String secondLeftStr;
-        secondLeftStr[0] = '0';
+        String secondLeftStr= "00";
         secondLeftStr[1] = char(secondLeft + 48);
-        String secondLeft = secondLeft;
+        String secondLeft = secondLeftStr;
     }
 
     lcd.print("Time Left: " + String(hourLeft) + ":" + String(minuteLeft) + ":" + String(secondLeft));
