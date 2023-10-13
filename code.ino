@@ -60,7 +60,6 @@ String formatNumber(int num) {
 void setup() {
     lcd.init(); // initialize the lcd 
     lcd.backlight();
-    lcd.begin(20, 4); //LCD
     lcd.clear();
 
     Serial.begin(115200); // Baud rate of Serial Monitor
@@ -80,7 +79,7 @@ void setup() {
     lcd.setCursor(0, 0);
     lcd.print("WiFi Connecting");
     Serial.println("WiFi Connecting"); //Print WiFi Status at Serial Monitor
-    //delay(8000); //Waitng For Connecting
+    delay(2000); //Waitng For Connecting
     lcd.clear();
 
     while (WiFi.status() != WL_CONNECTED) {
@@ -181,6 +180,25 @@ void loop() {
         lcd.print("Day: " + weekDay);
 
     } 
+    else if (currentHour == 12) {
+        currentHour = 12;
+        String formattedHour = formatNumber(currentHour);
+        String formattedMinute = formatNumber(currentMinute);
+        String formattedSecond = formatNumber(currentSecond);
+        String formattedDate = formatNumber(currentDate);
+        String formattedMonth = formatNumber(currentMonth);
+        
+
+        lcd.setCursor(0, 0);
+        lcd.print("Time: " + formattedHour + ":" + formattedMinute + ":" + formattedSecond + " PM");
+        
+        lcd.setCursor(0, 1);
+        lcd.print("Date: " + formattedDate + "/" + formattedMonth + "/" + String(currentYear));
+
+        lcd.setCursor(0, 2);
+        lcd.print("Day: " + weekDay);
+
+    }
     
     else if (currentHour > 12) {
         flag = 0;
@@ -193,7 +211,7 @@ void loop() {
         String formattedMonth = formatNumber(currentMonth);
         
         lcd.setCursor(0, 0);
-        lcd.print("Time: " + formattedHour + ":" + formattedMinute + ":" + formattedSecond + " AM");
+        lcd.print("Time: " + formattedHour + ":" + formattedMinute + ":" + formattedSecond + " PM");
 
         lcd.setCursor(0, 1);
         lcd.print("Date: " + formattedDate + "/" + formattedMonth + "/" + String(currentYear));
