@@ -239,8 +239,8 @@ void loop() {
     }
 
     int hourLeft = 24 - timeClient.getHours() - 1;
-    int minuteLeft = 60 - timeClient.getMinutes();
-    int secondLeft = 60 - timeClient.getSeconds();
+    int minuteLeft = 60 - timeClient.getMinutes()-1;
+    int secondLeft = 60 - timeClient.getSeconds()-1;
 
     String formattedHourLeft = formatNumber(hourLeft);
     String formattedMinuteLeft = formatNumber(minuteLeft);
